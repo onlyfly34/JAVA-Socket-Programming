@@ -3,13 +3,22 @@ This is a simple demonstration of JAVA Socket programming.
 Preinstall JDK and JRE and compile source code with IDE or CLI.  
   
 CLI：  
-javac Simple_Socket_Client_1.java (simplest version)  
-javac Simple_Socket_Client_2.java (with data transmission)  
-javac Simple_TCP_Socket_Server_1.java (simplest version)  
-javac Simple_TCP_Socket_Server_2.java (able to accept one client)  
-javac Simple_TCP_Socket_Server_3.java (with thread)  
-javac Simple_TCP_Socket_Server_4.java (with data transmission)
-
-After compiling source code, execute with command：  
+javac Simple_Socket_Client_1.java  
+javac Simple_Socket_Client_2.java  
+javac Simple_TCP_Socket_Server_1.java  
+javac Simple_TCP_Socket_Server_2.java  
+javac Simple_TCP_Socket_Server_3.java  
+javac Simple_TCP_Socket_Server_4.java  
+  
+After compiling source code, execute with CLI：  
 java XXXXXXXX  
-(ex：java Simple_Socket_Client_1)
+(ex：java Simple_Socket_Client_1)  
+  
+File description：
+<Simple_Socket_Client_1.java>  
+(simplest version)  
+(with data transmission)  
+(simplest version)  
+(able to accept one client)  
+(with thread)  
+(with data transmission)
