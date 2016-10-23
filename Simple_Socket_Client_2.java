@@ -13,24 +13,30 @@ public class Simple_Socket_Client_2{
 	
 	public Simple_Socket_Client_2(){
 		build_client_socket();
+		close_socket();
 	}
 
 	private void build_client_socket(){
+		String inData;
+		String outData;
+		DataInputStream in;
+		DataOutputStream out;
+
 		try{
 			cs = new Socket(InetAddress.getByName(addr), port);
 			System.out.println("Connection to server IP: " + 
 					cs.getInetAddress().getHostAddress() + "\n");
 			
-			String inData = "";
-			DataOutputStream out = new DataOutputStream(cs.getOutputStream());
-			DataInputStream in = new DataInputStream(cs.getInputStream());
+			in = new DataInputStream(cs.getInputStream());
+			out = new DataOutputStream(cs.getOutputStream());
 
 			while(true){
-				System.out.print("Please type messages to server：");
+				System.out.print("Please type messages to server：(Enter exit to leave)");
 				scanner = new Scanner(System.in);
-				String outData = scanner.nextLine();
-				if(outData.equals("321"))
+				outData = scanner.nextLine();
+				if(outData.equals("exit")){
 					break;
+				}
 				out.writeUTF(outData);
 				inData = in.readUTF();
 				System.out.println("Message from server "+cs.getInetAddress().getHostAddress()+" :"+inData);

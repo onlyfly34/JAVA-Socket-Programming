@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 public class Simple_TCP_Socket_Server_1 {
 	private ServerSocket ss;
 	private static final int port = 57968;
+	private static final int backlog = 10;
 	private static final String addr = "127.0.0.1";
 
 	public Simple_TCP_Socket_Server_1(){
@@ -14,7 +15,7 @@ public class Simple_TCP_Socket_Server_1 {
 	
 	private void build_ServerSocket_and_list_ServerInfo(){
 		try{
-			ss = new ServerSocket(port, 10, InetAddress.getByName(addr)); //build socket
+			ss = new ServerSocket(port, backlog, InetAddress.getByName(addr)); //build socket
 			// Get local information
 			// ====================================================================================
 			System.out.println("Local Information:");

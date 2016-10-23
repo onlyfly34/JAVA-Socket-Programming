@@ -9,16 +9,15 @@ public class Simple_Socket_Client_1{
 	
 	public Simple_Socket_Client_1(){
 		build_client_socket();
+		close_socket();
 	}
 
 	private void build_client_socket(){
 		try{
-			// ====================================================================================
 			cs = new Socket(InetAddress.getByName(addr), port);
 
 			System.out.println("Connection to server IP: " + 
 					cs.getInetAddress().getHostAddress());
-			// ====================================================================================
 		}catch (IOException e){
 			e.printStackTrace();
 		}

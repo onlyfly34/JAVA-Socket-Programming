@@ -10,6 +10,7 @@ public class Simple_TCP_Socket_Server_4 {
 	private ServerSocket ss;
 	private Socket cs;
 	private static final int port = 57968;
+	private static final int backlog = 10;
 	private static final String addr = "127.0.0.1";
 
 	public Simple_TCP_Socket_Server_4(){
@@ -20,7 +21,7 @@ public class Simple_TCP_Socket_Server_4 {
 	
 	private void build_ServerSocket_and_list_ServerInfo(){
 		try{
-			ss = new ServerSocket(port, 10, InetAddress.getByName(addr)); //build socket
+			ss = new ServerSocket(port, backlog, InetAddress.getByName(addr)); //build socket
 			// Get local information
 			// ====================================================================================
 			System.out.println("Local Information:");
@@ -79,24 +80,30 @@ class listenThread implements Runnable {
 	}
 	
 	public void run() {
+		String inData;
+		String outData;
+		DataInputStream in;
+		DataOutputStream out;
+
 		try {
 			if(cs.isConnected()) {
 				System.out.println("Connection from client IP: " + 
-						cs.getInetAddress().getHostAddress() + "\n");  //
-				String inData = "";
-				DataInputStream in = new DataInputStream(cs.getInputStream());
-				DataOutputStream out = new DataOutputStream(cs.getOutputStream());
+						cs.getInetAddress().getHostAddress() + "\n");
+				in = new DataInputStream(cs.getInputStream());
+				out = new DataOutputStream(cs.getOutputStream());
 
 				while(true){
 					inData = in.readUTF();
 					System.out.println("Message from client "+cs.getInetAddress().getHostAddress()+" :"+inData);
-					System.out.print("Please type messages to client：");
+					System.out.print("Please type messages to client：(Enter exit to kick the client)");
 					scanner = new Scanner(System.in);
-					String outData = scanner.nextLine();
-					if(outData.equals("321"))
+					outData = scanner.nextLine();
+					if(outData.equals("exit")){
 						break;
+					}
 					out.writeUTF(outData);
 				}
+				
 				in.close();
 				out.close();
 				cs.close();
